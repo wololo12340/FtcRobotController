@@ -118,7 +118,7 @@ public class MockOpMode extends OpMode
         double radius = Math.sqrt(gamepad1.left_stick_x*gamepad1.left_stick_x+gamepad1.left_stick_y*gamepad1.left_stick_y);
         double dzval = 0.5;
         double exp = 4.0;
-        double speed = Math.pow(((radius-dzval)/(1-dzval)), exp)/1.5;
+        double speed = Math.pow(((radius-dzval)/(1-dzval)), exp)/1.1;
         if(radius < dzval){
             speed = 0;
         }
@@ -137,6 +137,18 @@ public class MockOpMode extends OpMode
         rightFrontDrive.setPower(rightFrontPower);
         leftBackDrive.setPower(leftBackPower);
         rightBackDrive.setPower(rightBackPower);
+
+        // Slow strafe
+        double strafeSpeed = speed/2;
+        if (gamepad1.right_trigger_pressed){
+            strafe = strafeSpeed * Math.cos(angle);
+            forward = strafeSpeed * Math.sin(angle);
+        }
+        // Drift Mode
+        
+
+
+        // Make a way to shoot balls using IntakeMotor1, IntakeMotor2, and ShootMotor
 
 
         // Show the elapsed game time and wheel power.
